@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- \scripts -->
+    <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div id="loginBox">
+        <input id="username" type="text">
+        <button id="btnStart">START</button>
+    </div>
+    <div id="chatBox">
+        <input id="toUser" placeholder=" Send To (Default Everyone)">
+        <input type="text" id="inpMsg" placeholder="New Message">
+        <button id="btn">SEND</button>
+        <ul id="ulMsg"></ul>
+    </div>
+</body>
+</html>
