@@ -7,12 +7,24 @@ const socketio = require('socket.io');
 app.use('/', express.static(__dirname + '/public'));
 const io = socketio(server);
 
+let users = {};
+
 io.on('connection', (socket) => {
 	console.log('Connnected with socket id', socket.id);
 
 	socket.on('login', (data) => {
-		socket.join(data.username);
-		socket.emit('loggedIn');
+		if (users[data.username]) {
+			if (users[data.username] == data.password) {
+				socket.join(data.username);
+				socket.emit('loggedIn');
+			} else {
+				socket.emit('login_failed');
+			}
+		} else {
+			users[data.username] = data.password;
+			socket.join(data.username);
+			socket.emit('loggedIn');
+		}
 	});
 
 	socket.on('msg_send', (data) => {

@@ -5,13 +5,18 @@ $('#chatBox').hide();
 
 $('#btnStart').click(() => {
 	socket.emit('login', {
-		username: $('#username').val()
+		username: $('#username').val(),
+		password: $('#password').val()
 	});
 });
 
 socket.on('loggedIn', () => {
 	$('#loginBox').hide();
 	$('#chatBox').show();
+});
+
+socket.on('login_failed', () => {
+	window.alert('Username or password incorrect');
 });
 
 $('#btn').click(() => {
